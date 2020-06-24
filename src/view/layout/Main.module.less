@@ -1,0 +1,111 @@
+@import '~$assets/css/_theme.less';
+@import '~$assets/css/_mixin.less';
+
+.layout-container {
+  min-height: 100vh;
+
+  :global(.ant-layout-sider-collapsed) {
+    .logo {
+      padding: 0px;
+
+      > img {
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+    }
+  }
+}
+
+.sider-container {
+  position: fixed;
+  z-index: 100;
+  height: 100%;
+  background-color: #001529;
+  transition: all 0.3s;
+}
+
+.main {
+  position: relative;
+  transition: all 0.3s;
+}
+
+.global-spin {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+}
+
+.logo {
+  height: 32px;
+  line-height: 32px;
+  margin: @padding-md 0px;
+  padding: 0px @padding-lg;
+  overflow: hidden;
+
+  > img {
+    width: 40px;
+  }
+
+  &__title {
+    display: inline;
+    font-size: 18px;
+    margin-left: @padding-xs;
+    color: #fff;
+    vertical-align: middle;
+  }
+}
+
+.header {
+  background: #fff;
+  padding: 0;
+  display: flex;
+  padding: 0 @padding-md;
+  justify-content: space-between;
+}
+
+.user-container {
+  cursor: pointer;
+  float: right;
+}
+
+.user-name {
+  font-size: 16px;
+}
+
+.avatar {
+  margin-right: @padding-xs;
+}
+
+.header-link {
+  display: inline-block;
+  margin-right: @padding-lg;
+}
+
+.menu-fold-btn {
+  font-size: 18px;
+  line-height: 64px;
+  transition: color 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    color: @primary-color;
+  }
+}
+
+.breadcrumb {
+  margin: @padding-md 0;
+}
+
+.body {
+  margin: 0 16px;
+
+  &__content {
+    min-height: 360px;
+  }
+}
+
+.footer {
+  text-align: center;
+}

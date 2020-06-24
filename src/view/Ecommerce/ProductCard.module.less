@@ -1,0 +1,59 @@
+@import '~$assets/css/_theme.less';
+@containerWidth: 620px;
+@containerHeigh: 420px;
+@imgBox: 100px;
+
+.cardBox {
+  width: @containerWidth;
+  padding-top: 4px;
+}
+
+.img-box {
+  width: @imgBox;
+  height: @imgBox;
+  display: block;
+  object-fit: contain;
+}
+
+.detail {
+  padding-left: @padding-md;
+  width: @containerWidth - @imgBox;
+}
+.info {
+  display: flex;
+  flex-direction: row;
+  width: @containerWidth;
+  align-items: center;
+  height: @imgBox;
+}
+
+.ids {
+  margin-top: @padding-xs;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+
+  &-title {
+    min-width: 60px;
+    font-weight: 500;
+  }
+}
+
+.price {
+  margin-top: @padding-xs;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  &-title {
+    font-weight: 500;
+    min-width: 60px;
+  }
+}
+
+.line-box {
+  width: @containerWidth;
+  height: 230px;
+  margin-top: @padding-xs;
+}

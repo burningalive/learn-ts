@@ -1,0 +1,78 @@
+@import '~$assets/css/_theme.less';
+
+:global {
+}
+
+.content-box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: @padding-md;
+  justify-content: space-between;
+}
+
+.sortSelect {
+  width: 200px;
+  margin-left: @padding-md;
+}
+
+.headText {
+  margin-bottom: 0;
+}
+
+.cardOuter {
+  position: relative;
+  width: 245px;
+  display: flex;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+  flex-direction: column;
+  transition-duration: 0.2s;
+  border-radius: @border-radius;
+  margin-bottom: @padding-md;
+  &:hover {
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.snapshotOuter {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: #eeeeee;
+  overflow: hidden;
+}
+
+.snapshotImg {
+  width: 100%;
+  // object-fit: contain;
+  object-position: center;
+  background-color: @disabled-bg;
+}
+.cardFooterBox {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  padding: @padding-xs;
+}
+.advertiserBox {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+}
+.advertiserIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: @border-radius;
+}
+
+.advertiserName {
+  color: @heading-color;
+  margin-left: @padding-xs;
+}
+
+.serviceChannelImg {
+  width: 24px;
+  height: 24px;
+}

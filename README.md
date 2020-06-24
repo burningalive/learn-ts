@@ -1,44 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 当谈论到优化react性能时,通常在指什么?
 
-In the project directory, you can run:
+广义上讲, 优化react性能涉及如下方面
+- service workers
+- lazy loading images
+- code splitting
+- minification
+- tree shaking
 
-### `yarn start`
+不过, 上面这些都是load time performance, 本篇在于只讨论runtime performance.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> 该怎么知道你的react程序有性能问题呢?
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+> 事实上, 或许你不需要. 大部分情况下, 细微的性能问题感受不出来. 当代设备计算能力很强, 一般的性能问题都感觉不出来, 就算体会得到, 这通常也不个大问题. 毕竟, 不要过早的优化还没有明显问题的代码.
 
-### `yarn test`
+![](ppt/QQ截图20200624162552.png)
+当遇到卡顿现象时, 就能感受到性能问题, 遇到时, 打开浏览器devtools-performance.
+最上面箭头指向的一行是fps(帧数), 绿色时一切正常, 红色时糟糕透顶几乎为0.
+下面箭头指向的则是主线程的情况, 右上角标记为红色意味着这是一个long task, 这段卡顿的时间将极大的降低用户体验: 界面僵住, 无法进行点击按钮之类的任何交互. 一般来说, 可明显感知到的卡顿为100ms. 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 如何优化运行时性能?
 
-### `yarn build`
+- 确定问题存在位置
+- 估计卡顿时间
+- 改进
+- 打开dep tools
+- 重复上述步骤直到可确认性能没有问题
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+当动画以60帧运行时, 一帧时长为16.66ms, 在dev tools的frames一行中可以看到每一帧的情况, 点击具体某一帧还可查看详细信息.
+![方框内为一帧](ppt/frames一帧.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+`Main`中的所有任务于鼠标hover上时都会显示运行的任务详情与耗时.
+![](ppt/hover-a-task.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`timings`中可以看到User Timings, 图中react已经用User Timings API(performance.mark 与 performance.measure) 对内部的一些关键步骤定义了标记和说明, 这比看`frames`和`main`那两项要直观得多.
+![](ppt/user-timings.png)
 
-### `yarn eject`
+## React中的常见性能问题
+- 最最常见的情况: 由于依赖导致的不必要渲染
+- React并没有默认对重渲染进行处理: 未进行任何处理时, 界面上一个组件视觉上有明显变化, 那么React将会重新渲染它的所有子组件
+- React在渲染大量组件时的性能并不怎么样 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+观察性能的另一个好方法: 在React development tools - Profiler里查看
+![](ppt/react-profiler-ranked.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+memo/PureComponent, 用hooks方法缓存没必要改变的值.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## list are everywhere 
+list virtualization
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`react-window`
 
-## Learn More
+## cpu pref problems
+- web apps run on the main thread
+- UI generally runs on the main thread
+- non trivial cpu intensive tasks can stall your apps interactivity
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Web Workers

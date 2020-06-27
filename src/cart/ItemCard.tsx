@@ -16,7 +16,7 @@ function areEqual(prevProps: Props, nextProps: Props) {
   )
 }
 
-const ItemCard = React.memo((props: Props) => {
+const ItemCard = (props: Props) => {
   console.log('cart item rerender')
   const { item, checked, onCheckedChange } = props
   const { name, price } = item
@@ -48,7 +48,7 @@ const ItemCard = React.memo((props: Props) => {
       </p>
     </div>
   )
-}, areEqual)
+}
 
 
-export default ItemCard
+export default React.memo(ItemCard)

@@ -1,34 +1,45 @@
 .cart {
-   max-width: 400px;
-   margin: auto;
+  max-width: 400px;
+  margin: auto;
 }
 
 .item-card {
-  display: flex;
-  width: 100%;
-  padding-bottom: 24px;
+ display: flex;
+ width: 100%;
+ padding-bottom: 24px;
 }
 
 .checkbox-wrap {
-  margin-right: 8px;
+ margin-right: 8px;
 }
 
 .item-info {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
+ flex: 1;
+ display: flex;
+ justify-content: space-between;
 }
 
 .footer {
-  display: flex;
-  justify-content: space-between;
+ display: flex;
+ justify-content: space-between;
 }
 
 .check-all {
-  display: flex;
-  align-items: center;
+ display: flex;
+ align-items: center;
 }
 
 .check-all input {
-  margin-right: 8px;
+ margin-right: 8px;
+}
+
+.container {
+ width: 200px;
+ height: 200px;
+ background-color: coral;
+ /* color: white; */
+ border: 2px solid #000;
+ flex-direction: column; 
+ justify-content: space-around;
+ align-items: center;
 }

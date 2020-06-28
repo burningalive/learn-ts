@@ -48,7 +48,12 @@
 
 > 大多数时候，并不需要考虑去优化不必要的重新渲染。
 
-观察 react 性能的最佳方法: 在 React development tools - Profiler 里查看
+观察 react 性能的最佳方法: 在 React development tools - Profiler 里查看.
+
+可以切换每次commit, 查看此次 commit 后组件变化的详细信息. 可以点击小齿轮设置按钮, 选中"记录组件更新原因"后, 在下方火焰图中可点击任意一个组件查看触发render的详情(相当于内置了why-did-you-update). 也可以输入指定Render duration花费的毫秒数, 以过滤掉较快的commit记录.
+![](ppt/react-profiler-commit.png)
+
+选中火焰图边上的排名视图，会展示该次commit中组件渲染时间由高到低的排名，方便排序出最长时间的渲染.
 ![](ppt/react-profiler-ranked.png)
 
 ## 使用 `memo`/`PureComponent`

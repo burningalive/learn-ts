@@ -1,6 +1,6 @@
 import React from 'react';
 import Cart from './cart'
-import List from './list';
+import List from './list/index';
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,14 +20,11 @@ function App() {
           <Route path="/cart">
             <Cart />
           </Route>
-          <Route path="/list">
-            <List />
-          </Route>
+
           <Route path="/" exact>
             <>
                 <li><Link to="/cart">React demo</Link></li>
-                <li><Link to="/list">List demo</Link></li>
-                <li><Link to="/users">Users</Link></li>
+                <li><a target="__blank" href="https://glitch.com/~react-window-variable">List Demo</a></li>
               </>  
           </Route>
         </Switch>

@@ -1,5 +1,5 @@
 import React from "react"
-import { CartItem } from "./"
+import { CartItem } from "."
 import { OnCheckedChange } from './use-checked'
 import { Typography } from "antd"
 import {Random} from 'mockjs';
@@ -36,7 +36,7 @@ const ItemCard = (props: Props) => {
           // onChange={onWrapCheckedChange}
         />
       </div>
-      <img src={Random.dataImage()} className="random-img" alt="" />
+      {/* <img src={Random.dataImage()} className="random-img" alt="" /> */}
       <p className="item-info">
         {name} <Typography.Text >${price}</Typography.Text>
       </p>

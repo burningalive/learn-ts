@@ -1,5 +1,6 @@
+// @ts-nocheck
 import React from 'react';
-import { FixedSizeList } from 'react-window';
+import {  FixedSizeList } from 'react-window';
 import { List, Typography } from 'antd';
 import ItemCard from './ItemCard';
 import { useChecked } from './use-checked';
@@ -79,9 +80,6 @@ export default function Cart() {
   const Row = ({
     index,
     style,
-  }: {
-    index: number;
-    style: object | undefined;
   }) => {
     const item = cartData[index];
     const checked = checkedMap[item.id] || false;
@@ -93,22 +91,20 @@ export default function Cart() {
       />
     );
   };
-
+  // @ts-ignore
   return (
     <div className="cart">
       <div>购物车</div>
-      <section className="cartList">
-        {cartData.map(item => {
-          const checked = checkedMap[item.id] || false;
-          return (
-            <ItemCard
-              item={item}
-              checked={checked}
-              onCheckedChange={onCheckedChange}
-            />
-          );
-        })}
-      </section>
+      
+      <FixedSizeList
+        height={800}
+        itemCount={cartData.length}
+        itemSize={50}
+        className="cartList"
+        width={400}
+      >
+        {Row}
+      </FixedSizeList>
       {footer}
     </div>
   );
@@ -130,37 +126,6 @@ export default function Cart() {
       /> */
 }
 
-const Container = React.memo(
-  (props: {
-    onClick: any;
-    count: number;
-    name: string | number;
-    memoed?: any;
-  }) => {
-    console.log(`container ${props.name} re-render`);
-
-    return (
-      <div className="container">
-        <button
-          onClick={() => {
-            props.onClick(props.count + 1);
-          }}
-        >
-          increase
-        </button>
-        <button
-          onClick={() => {
-            props.onClick(props.count);
-          }}
-        >
-          equal
-        </button>
-        <p>{props.count}</p>
-        <InnerView count={props.count} handleClick={() => {}} />
-      </div>
-    );
-  }
-);
 
 function InnerView(props: any) {
   // console.log('inner view re render');

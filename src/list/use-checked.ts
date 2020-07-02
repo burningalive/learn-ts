@@ -79,7 +79,7 @@ export const useChecked = <T extends Record<string, any>>(
   );
 
   /** 勾选状态变更 */
-  const onCheckedChange: OnCheckedChange<T> = (dataItem, checked) => {
+  const onCheckedChange: OnCheckedChange<T> = useCallback((dataItem, checked) => {
     setTimeout(() => {
       dispatch({
         type: CHECKED_CHANGE,
@@ -89,7 +89,7 @@ export const useChecked = <T extends Record<string, any>>(
         },
       });
     }, 0)
-  };
+  }, []);
 
   type FilterCheckedFunc = (item: T) => boolean;
   /** 筛选出勾选项 可以传入filter函数继续筛选 */
